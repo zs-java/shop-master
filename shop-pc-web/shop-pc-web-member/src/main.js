@@ -3,8 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// import $ from '/static/amaze/js/jquery.min.js'
+// import '/static/amaze/js/amazeui.min.js'
 
 Vue.config.productionTip = false
+
+// Vue.use($);
 
 /* eslint-disable no-new */
 new Vue({
