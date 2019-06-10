@@ -2,6 +2,7 @@
 namespace app\index\controller;
 
 use common\base\BaseApiController;
+use think\Db;
 
 class Index extends BaseApiController
 {
@@ -25,7 +26,6 @@ class Index extends BaseApiController
 //        return $this->setNotLogin();
 
         //TODO 需要xxx
-
 
         return $this->setResult(405, 'ss', null);
 
