@@ -2,7 +2,9 @@
   <div class="user-bill">
     <!--标题 -->
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">账单</strong> / <small>Electronic&nbsp;bill</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">账单</strong> /
+        <small>Electronic&nbsp;bill</small>
+      </div>
     </div>
     <hr/>
 
@@ -194,19 +196,19 @@
         </div>
 
         <!--<script>-->
-          <!--$(document).ready(function (ev) {-->
+        <!--$(document).ready(function (ev) {-->
 
-            <!--$('.cards-carousel .details').on('click', function (ev) {-->
-              <!--$('.cards-details').css("display","block");-->
-              <!--$('.cards-carousel').css("display","none");-->
-            <!--});-->
+        <!--$('.cards-carousel .details').on('click', function (ev) {-->
+        <!--$('.cards-details').css("display","block");-->
+        <!--$('.cards-carousel').css("display","none");-->
+        <!--});-->
 
-            <!--$('.cards-details .close').on('click', function (ev) {-->
-              <!--$('.cards-details').css("display","none");-->
-              <!--$('.cards-carousel').css("display","block");-->
-            <!--});-->
+        <!--$('.cards-details .close').on('click', function (ev) {-->
+        <!--$('.cards-details').css("display","none");-->
+        <!--$('.cards-carousel').css("display","block");-->
+        <!--});-->
 
-          <!--});-->
+        <!--});-->
         <!--</script>-->
 
       </div>
@@ -214,13 +216,12 @@
     </div>
 
   </div>
-
 </template>
 
 <script>
-    export default {
-        name: "bill"
-    }
+  export default {
+    name: "bill"
+  }
 </script>
 
 <style scoped>
