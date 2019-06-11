@@ -367,7 +367,7 @@ optgroup {
 /* Tables
    ========================================================================== */
 /**
- * Remove most spacing between table cells.
+ * Remove most spacing between good cells.
  */
 table {
   border-collapse: collapse;
@@ -7716,7 +7716,7 @@ img.am-thumbnail,
   .am-hide-lg-down {
     display: none !important;
   }
-  /* table */
+  /* good */
   table.am-show-sm-only,
   table.am-show-sm-up,
   table.am-show-sm,

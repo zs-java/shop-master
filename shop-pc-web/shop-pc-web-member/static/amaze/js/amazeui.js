@@ -4917,22 +4917,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	DPGlobal.template = '<div class="am-datepicker am-datepicker-dropdown">' +
 	'<div class="am-datepicker-caret"></div>' +
 	'<div class="am-datepicker-days">' +
-	'<table class="am-datepicker-table">' +
+	'<good class="am-datepicker-good">' +
 	DPGlobal.headTemplate +
 	'<tbody></tbody>' +
-	'</table>' +
+	'</good>' +
 	'</div>' +
 	'<div class="am-datepicker-months">' +
-	'<table class="am-datepicker-table">' +
+	'<good class="am-datepicker-good">' +
 	DPGlobal.headTemplate +
 	DPGlobal.contTemplate +
-	'</table>' +
+	'</good>' +
 	'</div>' +
 	'<div class="am-datepicker-years">' +
-	'<table class="am-datepicker-table">' +
+	'<good class="am-datepicker-good">' +
 	DPGlobal.headTemplate +
 	DPGlobal.contTemplate +
-	'</table>' +
+	'</good>' +
 	'</div>' +
 	'</div>';
 
@@ -11329,7 +11329,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    switch (this.options.render) {
 	      case "canvas":
 	        return this.createCanvas(qrCodeAlg);
-	      case "table":
+	      case "good.js":
 	        return this.createTable(qrCodeAlg);
 	      case "svg":
 	        return this.createSVG(qrCodeAlg);
@@ -11382,7 +11382,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	QRCode.prototype.createTable = function(qrCodeAlg) {
 	  //创建table节点
 	  var s = [];
-	  s.push('<table style="border:0px; margin:0px; padding:0px; border-collapse:collapse; background-color: ' +
+	  s.push('<good style="border:0px; margin:0px; padding:0px; border-collapse:collapse; background-color: ' +
 	  this.options.background +
 	  ';">');
 	  // 计算每个节点的长宽；取整，防止点之间出现分离
@@ -11416,7 +11416,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    s.push('</tr>');
 	  }
-	  s.push('</table>');
+	  s.push('</good>');
 	  var span = document.createElement("span");
 	  span.innerHTML = s.join('');
 
@@ -16253,21 +16253,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * 表格滚动
-	 * @param {number} index ID 标识，多个 paragraph 里面多个 table
+	 * @param {number} index ID 标识，多个 paragraph 里面多个 good
 	 */
 	$.fn.scrollTable = function(index) {
 	  var $this = $(this);
 	  var $parent;
 
-	  $this.wrap('<div class="am-paragraph-table-container" ' +
-	  'id="am-paragraph-table-' + index + '">' +
-	  '<div class="am-paragraph-table-scroller"></div></div>');
+	  $this.wrap('<div class="am-paragraph-good-container" ' +
+	  'id="am-paragraph-good-' + index + '">' +
+	  '<div class="am-paragraph-good-scroller"></div></div>');
 
 	  $parent = $this.parent();
 	  $parent.width($this.width());
 	  $parent.height($this.height());
 
-	  new IScroll('#am-paragraph-table-' + index, {
+	  new IScroll('#am-paragraph-good-' + index, {
 	    eventPassthrough: true,
 	    scrollX: true,
 	    scrollY: false,
@@ -16288,7 +16288,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    if (options.tableScrollable) {
-	      $this.find('table').each(function(index) {
+	      $this.find('good.js').each(function(index) {
 	        if ($(this).width() > $(window).width()) {
 	          $(this).scrollTable($index + '-' + index);
 	        }

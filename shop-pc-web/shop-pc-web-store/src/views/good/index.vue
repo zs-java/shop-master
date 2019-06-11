@@ -1,5 +1,21 @@
-<template>
+<template xmlns:el-col="http://www.w3.org/1999/html">
+
   <div class="app-container">
+    <el-tabs type="card" v-model="activeName">
+      <el-tab-pane label="用户管理" name="first">
+        <div style="margin-top: 5px;margin-bottom: 10px">
+          <el-row>
+            <el-col :span="5">
+            <el-input v-model="input3" placeholder="请输入内容">
+              <el-button slot="append" icon="el-icon-search"></el-button>
+            </el-input>
+            </el-col>
+            <el-col :span="16" >&nbsp;</el-col>
+            <el-col :span="3">
+             <router-link to="/example/addgood"><el-button style="width: 150px" icon="el-icon-plus" plain>添加商品</el-button></router-link>
+            </el-col>
+          </el-row>
+        </div>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -36,15 +52,18 @@
       <el-table-column align="center" prop="created_at" label="Display_time" width="200">
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+
         </template>
       </el-table-column>
     </el-table>
+      </el-tab-pane>
+      <el-tab-pane label="商品回收站"></el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { getList } from '@/api/good'
 
 export default {
   filters: {
@@ -59,21 +78,26 @@ export default {
   },
   data() {
     return {
+      activeName:'first',
       list: null,
-      listLoading: true
+      listLoading: true,
+      input3:'',
+      shoptype:'商品列表'
     }
   },
   created() {
     this.fetchData()
   },
   methods: {
-    fetchData() {
-      this.listLoading = true
-      getList().then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
-    }
+      fetchData() {
+          this.listLoading = true
+
+          getList().then(response => {
+              this.list = response.data.items
+              this.listLoading = false
+          })
+
+      }
   }
 }
 </script>

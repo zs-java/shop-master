@@ -4,7 +4,7 @@
   <div class="dashboard-editor-container">
     <div class=" clearfix">
       <pan-thumb :image="avatar" style="float: left">
-        欢迎您！
+        欢迎您a！
       </pan-thumb>
       <div class="info-container">
         <span class="display_name">{{ name }}</span>
