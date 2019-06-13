@@ -78,13 +78,15 @@ export const constantRoutes = [
         path: 'addgood',
         name: 'addgood',
         component: () => import('@/views/good/addgood'),
-        children:[
-          {
-            path:'/',
-            name:'stype',
-            component:()=>import('@/views/good/stype')
-          }
-        ]
+        hidden: true,
+        meta: { title: '新增商品', icon: 'table' },
+      },
+      {
+        path: 'addinfo',
+        name: 'info',
+        component: () => import('@/views/good/addinfo'),
+        hidden: true,
+        meta: { title: '新增商品', icon: 'table' },
       }
     ]
   },

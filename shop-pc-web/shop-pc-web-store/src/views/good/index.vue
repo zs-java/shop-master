@@ -12,7 +12,7 @@
             </el-col>
             <el-col :span="16" >&nbsp;</el-col>
             <el-col :span="3">
-             <router-link to="/example/addgood"><el-button style="width: 150px" icon="el-icon-plus" plain>添加商品</el-button></router-link>
+             <router-link to="/example/addgood"><el-button style="width: 150px" icon="el-icon-plus" type="primary" plain>添加商品</el-button></router-link>
             </el-col>
           </el-row>
         </div>
