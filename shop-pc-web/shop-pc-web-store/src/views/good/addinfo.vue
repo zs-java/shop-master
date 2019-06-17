@@ -30,7 +30,7 @@
               <el-col :span="5" class="col">
             店铺分类：
               </el-col>
-              <el-col span="19">
+              <el-col :span="19">
             <el-cascader :options="options" style="width: 400px">
               <template slot-scope="{ node, data }">
                 <span>{{ data.label }}</span>
@@ -96,7 +96,7 @@
           <li><div class="lim">
             <el-row>
               <el-col :span="5" class="col">
-            <span style="color: red">*</span>商品库存量：
+            <span style="color: red">*</span>商品库存数量：
               </el-col>
               <el-col :span="19">
                 <el-input
@@ -105,10 +105,182 @@
             placeholder="请输入内容"
             v-model="text"
             maxlength="150"/>
+                <div class="smallmessage">商铺库存数量必须为0~999999999之间的整数，若启用了库存配置，则系统自动计算商品的总数，此处无需卖家填写</div>
               </el-col>
             </el-row>
           </div>
           </li>
+          <li><div class="lim">
+            <el-row>
+              <el-col :span="5" class="col">
+               库存警告数量：
+              </el-col>
+              <el-col :span="19">
+                <el-input
+                  type="text"
+                  class="inputwidth"
+                  placeholder="请输入内容"
+                  v-model="text"
+                  maxlength="150"/>
+                <div class="smallmessage">设置最低库存预警值。当库存低于预警值时商家中心商品列表页库存列红字提醒，请填写0~255的数字，0为不预警。</div>
+              </el-col>
+            </el-row>
+          </div>
+          </li>
+          <li><div class="lim">
+            <el-row>
+              <el-col :span="5" class="col">
+                商品品牌：
+              </el-col>
+              <el-col :span="19">
+                <el-select v-model="value2" filterable placeholder="请选择">
+                  <el-option
+                    v-for="item in options2"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+                <div class="smallmessage">选择商品品牌可进行搜索</div>
+              </el-col>
+            </el-row>
+          </div>
+          </li>
+          <li><div class="lim">
+            <el-row>
+              <el-col :span="5" class="col">
+                <span style="color: red">*</span>商品主图片：
+              </el-col>
+              <el-col :span="19">
+                <el-upload
+                class="avatar-uploader"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+              </el-col>
+            </el-row>
+          </div>
+          </li>
+          <li><div class="lim">
+            <el-row>
+              <el-col :span="5" class="col">
+
+              </el-col>
+              <el-col :span="19">
+                <el-button type="primary">图片库选择</el-button>
+              </el-col>
+            </el-row>
+          </div>
+          </li>
+          <li><div class="lim">
+            <el-row>
+              <el-col :span="5" class="col">
+                主图视频：
+              </el-col>
+              <el-col :span="19">
+                <el-upload
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  list-type="picture-card"
+                  :on-preview="handlePictureCardPreview"
+                  :on-remove="handleRemove">
+                  <i class="el-icon-plus"></i>
+                </el-upload>
+                <el-dialog :visible.sync="dialogVisible">
+                  <video width="100%" :src="dialogImageUrl" alt=""></video>
+                </el-dialog>
+              </el-col>
+            </el-row>
+          </div>
+          </li>
+          <li><div class="lim">
+            <el-row>
+              <el-col :span="5" class="col">
+                  商品图片：
+              </el-col>
+              <el-col :span="19">
+                <el-upload
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  list-type="picture-card"
+                  :on-preview="handlePictureCardPreview"
+                  :on-remove="handleRemove">
+                  <i class="el-icon-plus"></i>
+                </el-upload>
+                <el-dialog :visible.sync="dialogVisible">
+                  <img width="100%" :src="dialogImageUrl" alt="">
+                </el-dialog>
+              </el-col>
+            </el-row>
+          </div>
+          </li>
+          <li><div class="lim">
+            <el-row>
+              <el-col :span="5" class="col">
+
+              </el-col>
+              <el-col :span="19">
+                <el-button type="primary">图片库选择</el-button>
+              </el-col>
+            </el-row>
+          </div>
+          </li>
+          <li><div class="lim">
+            <el-row>
+              <el-col :span="5" class="col">
+                  商品运费：
+              </el-col>
+              <el-col :span="19">
+                <div class="top">
+                  <el-radio v-model="radio" label="1">按固定运费</el-radio>
+                  <el-radio v-model="radio" label="2">按运费模板</el-radio>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          </li>
+          <li><div class="lim">
+            <el-row>
+              <el-col :span="5" class="col">
+                退货标识：
+              </el-col>
+              <el-col :span="19">
+                <div class="top">
+                  <el-checkbox-group v-model="checklist1">
+                    <el-checkbox label="维修"></el-checkbox>
+                    <el-checkbox label="退货"></el-checkbox>
+                    <el-checkbox label="换货"></el-checkbox>
+                    <el-checkbox label="仅退款"></el-checkbox>
+                  </el-checkbox-group>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          </li>
+          <li><div class="lim">
+            <el-row>
+              <el-col :span="5" class="col">
+                商品服务：
+              </el-col>
+              <el-col :span="19">
+                <div class="top">
+                  <el-checkbox-group v-model="checklist2">
+                    <el-checkbox label="正品保证"></el-checkbox>
+                    <el-checkbox label="包退服务"></el-checkbox>
+                    <el-checkbox label="闪速配送"></el-checkbox>
+                  </el-checkbox-group>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          </li>
+          <div class="header">
+            <span>#详细描述</span>
+            <hr>
+            <textarea :id="tinymceId" class="tinymce-textarea" />
+          </div>
           <div style="text-align: center;margin-top: 30px">
         <router-link to="addgood"><el-button>上一步</el-button></router-link>
         <router-link to="addinfo"><el-button type='primary'>下一步</el-button></router-link>
@@ -121,12 +293,85 @@
 </template>
 
 <script>
-    export default {
+  import plugins from './plugins'
+  import toolbar from './toolbar'
+  import load from './dynamicLoadScript'
+
+  // why use this cdn, detail see https://github.com/PanJiaChen/tinymce-all-in-one
+  const tinymceCDN = 'https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.3/tinymce.min.js'
+
+  export default {
         name: "addinfo",
+    props: {
+      id: {
+        type: String,
+        default: function() {
+          return 'vue-tinymce-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '')
+        }
+      },
+      value: {
+        type: String,
+        default: ''
+      },
+      toolbar: {
+        type: Array,
+        required: false,
+        default() {
+          return []
+        }
+      },
+      menubar: {
+        type: String,
+        default: 'file edit insert view format table'
+      },
+      height: {
+        type: [Number, String],
+        required: false,
+        default: 360
+      },
+      width: {
+        type: [Number, String],
+        required: false,
+        default: 'auto'
+      }
+    },
       data(){
           return{
+            hasChange: false,
+            hasInit: false,
+            tinymceId: this.id,
+            fullscreen: false,
+            languageTypeList: {
+              'en': 'en',
+              'zh': 'zh_CN',
+              'es': 'es_MX',
+              'ja': 'ja'
+            },
+            checklist1:[],
+            checklist2:[],
+            radio:'1',
+            dialogImageUrl: '',
+            dialogVisible: false,
             shopType:'家用电器',
+            imageUrl:'',
             text:'',
+            options2: [{
+              value: '选项1',
+              label: '黄金糕'
+            }, {
+              value: '选项2',
+              label: '双皮奶'
+            }, {
+              value: '选项3',
+              label: '蚵仔煎'
+            }, {
+              value: '选项4',
+              label: '龙须面'
+            }, {
+              value: '选项5',
+              label: '北京烤鸭'
+            }],
+            value2:'',
             options: [{
               value: 'zhinan',
               label: '指南',
@@ -323,11 +568,164 @@
               }]
             }]
           }
+      },
+      components:{
+      },
+      mounted(){
+        this.init()
+      },
+    activated() {
+      if (window.tinymce) {
+        this.initTinymce()
+      }
+    },
+
+    deactivated() {
+      this.destroyTinymce()
+    },
+    destroyed() {
+      this.destroyTinymce()
+    },
+    watch: {
+      value(val) {
+        if (!this.hasChange && this.hasInit) {
+          this.$nextTick(() =>
+            window.tinymce.get(this.tinymceId).setContent(val || ''))
+        }
+      }
+    },
+    computed: {
+      containerWidth() {
+        const width = this.width
+        if (/^[\d]+(\.[\d]+)?$/.test(width)) { // matches `100`, `'100'`
+          return `${width}px`
+        }
+        return width
+      }
+    },
+      methods: {
+
+        init() {
+          // dynamic load tinymce from cdn
+          load(tinymceCDN, (err) => {
+            if (err) {
+              this.$message.error(err.message)
+              return
+            }
+            this.initTinymce()
+          })
+        },
+        initTinymce() {
+          const _this = this
+          window.tinymce.init({
+            selector: `#${this.tinymceId}`,
+            language: this.languageTypeList['en'],
+            height: this.height,
+            body_class: 'panel-body ',
+            object_resizing: false,
+            toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
+            menubar: this.menubar,
+            plugins: plugins,
+            end_container_on_empty_block: true,
+            powerpaste_word_import: 'clean',
+            code_dialog_height: 450,
+            code_dialog_width: 1000,
+            advlist_bullet_styles: 'square',
+            advlist_number_styles: 'default',
+            imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
+            default_link_target: '_blank',
+            link_title: false,
+            nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
+            init_instance_callback: editor => {
+              if (_this.value) {
+                editor.setContent(_this.value)
+              }
+              _this.hasInit = true
+              editor.on('NodeChange Change KeyUp SetContent', () => {
+                this.hasChange = true
+                this.$emit('input', editor.getContent())
+              })
+            },
+            setup(editor) {
+              editor.on('FullscreenStateChanged', (e) => {
+                _this.fullscreen = e.state
+              })
+            }
+            // 整合七牛上传
+            // images_dataimg_filter(img) {
+            //   setTimeout(() => {
+            //     const $image = $(img);
+            //     $image.removeAttr('width');
+            //     $image.removeAttr('height');
+            //     if ($image[0].height && $image[0].width) {
+            //       $image.attr('data-wscntype', 'image');
+            //       $image.attr('data-wscnh', $image[0].height);
+            //       $image.attr('data-wscnw', $image[0].width);
+            //       $image.addClass('wscnph');
+            //     }
+            //   }, 0);
+            //   return img
+            // },
+            // images_upload_handler(blobInfo, success, failure, progress) {
+            //   progress(0);
+            //   const token = _this.$store.getters.token;
+            //   getToken(token).then(response => {
+            //     const url = response.data.qiniu_url;
+            //     const formData = new FormData();
+            //     formData.append('token', response.data.qiniu_token);
+            //     formData.append('key', response.data.qiniu_key);
+            //     formData.append('file', blobInfo.blob(), url);
+            //     upload(formData).then(() => {
+            //       success(url);
+            //       progress(100);
+            //     })
+            //   }).catch(err => {
+            //     failure('出现未知问题，刷新页面，或者联系程序员')
+            //     console.log(err);
+            //   });
+            // },
+          })
+        },
+        destroyTinymce() {
+          const tinymce = window.tinymce.get(this.tinymceId)
+          if (this.fullscreen) {
+            tinymce.execCommand('mceFullScreen')
+          }
+
+          if (tinymce) {
+            tinymce.destroy()
+          }
+        },
+        handleRemove(file, fileList) {
+          console.log(file, fileList);
+        },
+        handlePictureCardPreview(file) {
+          this.dialogImageUrl = file.url;
+          this.dialogVisible = true;
+        },
+        handleAvatarSuccess(res, file) {
+          this.imageUrl = URL.createObjectURL(file.raw);
+        },
+        beforeAvatarUpload(file) {
+          const isJPG = file.type === 'image/jpeg';
+          const isLt2M = file.size / 1024 / 1024 < 2;
+
+          if (!isJPG) {
+            this.$message.error('上传头像图片只能是 JPG 格式!');
+          }
+          if (!isLt2M) {
+            this.$message.error('上传头像图片大小不能超过 2MB!');
+          }
+          return isJPG && isLt2M;
+        }
       }
     }
 </script>
 
 <style scoped>
+  .top{
+    margin-top: 10px;
+  }
   .header{
     margin-top: 5px;
     font-size: 16px;
@@ -355,7 +753,7 @@
     cursor:pointer
   }
   .inputwidth{
-    width:500px ;
+    width:450px ;
   }
   .smallmessage{
     font-size: 10px;
@@ -366,5 +764,30 @@
   .col{
     text-align: right;
     padding-top: 10px;
+  }
+  /*上传主图片样式*/
+  .avatar-uploader .el-upload {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .avatar-uploader-icon {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar-uploader-icon:hover {
+    border-color: #409EFF;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
   }
 </style>
